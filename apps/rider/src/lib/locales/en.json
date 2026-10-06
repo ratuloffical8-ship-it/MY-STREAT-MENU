@@ -1,0 +1,303 @@
+{
+  "//": "apps/rider/src/lib/locales/en.json",
+  "app": {
+    "name": "MyStreetMenu Rider",
+    "tagline": "Your Menu. Everywhere."
+  },
+  "languages": {
+    "bn": "বাংলা",
+    "en": "English"
+  },
+  "common": {
+    "loading": "Loading...",
+    "retry": "Retry",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "back": "Back",
+    "close": "Close",
+    "save": "Save",
+    "done": "Done",
+    "yes": "Yes",
+    "no": "No",
+    "call": "Call",
+    "open": "Open",
+    "viewAll": "View all",
+    "today": "Today",
+    "thisWeek": "This week",
+    "notSavedRetry": "Not saved — Retry",
+    "reportProblem": "Report a problem"
+  },
+  "nav": {
+    "home": "Home",
+    "history": "History",
+    "earnings": "Earnings",
+    "profile": "Profile"
+  },
+  "greeting": {
+    "morning": "Good morning, {name}",
+    "afternoon": "Good afternoon, {name}",
+    "evening": "Good evening, {name}",
+    "riderAccount": "Your rider account"
+  },
+  "auth": {
+    "loginTitle": "Rider login",
+    "phoneLabel": "Mobile number",
+    "phonePlaceholder": "01XXXXXXXXX",
+    "sendOtp": "Send OTP",
+    "otpLabel": "Enter the OTP sent to {phone}",
+    "verify": "Verify & log in",
+    "resendOtp": "Resend OTP",
+    "forgotPassword": "Forgot password?",
+    "logout": "Log out",
+    "invalidPhone": "Enter a valid mobile number",
+    "invalidOtp": "The OTP is not correct"
+  },
+  "home": {
+    "availability": "Your availability",
+    "online": "Online",
+    "offline": "Offline",
+    "onlineHint": "You can receive delivery assignments.",
+    "offlineHint": "Go online to receive deliveries.",
+    "goOffline": "Go offline",
+    "goOnline": "Go online",
+    "todayTitle": "TODAY",
+    "completed": "Completed",
+    "deliveriesCount": "{count} deliveries",
+    "todayEarnings": "Today's earnings",
+    "noActive": "No active delivery",
+    "noActiveHint": "Stay online to receive your next task.",
+    "activeDelivery": "Active delivery",
+    "continueDelivery": "Continue delivery"
+  },
+  "status": {
+    "assigned": "Assigned",
+    "toPickup": "Going to pickup",
+    "toDropoff": "Delivering",
+    "completed": "Completed",
+    "cancelled": "Cancelled"
+  },
+  "assignment": {
+    "newAssignment": "NEW ASSIGNMENT",
+    "distance": "Estimated distance",
+    "time": "Estimated time",
+    "pickup": "PICKUP",
+    "dropoff": "DROP-OFF",
+    "customerAddress": "Customer address",
+    "start": "VIEW DELIVERY / START"
+  },
+  "steps": {
+    "pickup": "Pickup",
+    "dropoff": "Drop-off",
+    "complete": "Complete"
+  },
+  "pickup": {
+    "deliveryLabel": "DELIVERY {code}",
+    "badge": "Go to pickup",
+    "title": "PICK UP THE ORDER",
+    "openDirections": "Open directions",
+    "instructionsTitle": "PICKUP INSTRUCTIONS",
+    "defaultInstructions": "Ask restaurant for order {code}. Confirm order number before leaving.",
+    "afterCollecting": "AFTER COLLECTING THE ORDER",
+    "afterHint": "Confirm only after the restaurant hands over the package.",
+    "confirm": "CONFIRM PICKUP",
+    "reportProblem": "Report a pickup problem"
+  },
+  "dropoff": {
+    "badge": "Deliver order",
+    "title": "CUSTOMER DROP-OFF",
+    "instructionsTitle": "DELIVERY INSTRUCTIONS",
+    "callCustomer": "Call customer",
+    "atLocation": "AT THE CUSTOMER'S LOCATION?",
+    "atLocationHint": "Complete handoff using the confirmation method required by MyStreetMenu.",
+    "confirm": "CONFIRM DELIVERY",
+    "reportProblem": "Report a delivery problem",
+    "enterOtp": "Ask the customer for the 4-digit code",
+    "photoRequired": "Take a doorstep photo (contactless delivery)"
+  },
+  "completed": {
+    "title": "Delivery completed",
+    "message": "{code} has been marked as delivered.",
+    "earning": "Delivery earning",
+    "status": "Status",
+    "statusCompleted": "Completed",
+    "backHome": "BACK TO HOME",
+    "viewSummary": "View delivery summary"
+  },
+  "problem": {
+    "title": "Report a problem",
+    "chooseReason": "Choose what happened",
+    "restaurantClosed": "Restaurant is closed",
+    "orderNotReady": "Order is not ready",
+    "wrongOrder": "Wrong or missing items",
+    "customerUnreachable": "Customer is not answering",
+    "wrongAddress": "Cannot find the address",
+    "customerRefused": "Customer refused the order",
+    "accident": "Accident or vehicle trouble",
+    "other": "Other problem",
+    "submit": "Send report",
+    "sent": "Report sent. Dispatch will contact you."
+  },
+  "geofence": {
+    "tooFar": "You are {meters} m away. Get within {radius} m of the customer to confirm.",
+    "checking": "Checking your location...",
+    "denied": "Location permission is needed to confirm delivery.",
+    "unavailable": "Could not get your location. Move to an open area and try again.",
+    "ok": "You are at the customer's location."
+  },
+  "arrived": {
+    "button": "I've arrived",
+    "sentRestaurant": "Restaurant has been notified.",
+    "sentCustomer": "Customer has been notified."
+  },
+  "orderReady": {
+    "title": "Order ready in",
+    "ready": "Order is ready for pickup",
+    "notSet": "Ready time not set yet"
+  },
+  "batch": {
+    "title": "Batch delivery",
+    "subtitle": "{count} orders in the same area",
+    "orderOf": "Order {index} of {total}",
+    "nextStop": "Next stop"
+  },
+  "history": {
+    "title": "Delivery history",
+    "empty": "No deliveries yet.",
+    "filterAll": "All",
+    "filterToday": "Today",
+    "filterWeek": "This week",
+    "filterMonth": "This month",
+    "delivered": "Delivered",
+    "cancelled": "Cancelled"
+  },
+  "earnings": {
+    "title": "Earnings",
+    "today": "Today",
+    "week": "This week",
+    "total": "Total",
+    "tips": "Tips",
+    "bonus": "Bonus",
+    "deliveries": "Deliveries",
+    "payoutSchedule": "Payout schedule",
+    "payoutHint": "Weekly. Cash out when the 7-day period ends.",
+    "dailyTarget": "Daily target",
+    "targetProgress": "{done} of {target} deliveries",
+    "targetRemaining": "Do {remaining} more deliveries for a {bonus} bonus",
+    "targetReached": "Target reached! {bonus} bonus added."
+  },
+  "tips": {
+    "title": "Tips",
+    "fromCustomers": "Tips from customers",
+    "none": "No tips yet",
+    "tipFor": "Tip for {code}"
+  },
+  "cashout": {
+    "title": "Instant cashout",
+    "available": "Available to cash out",
+    "method": "Cash out to",
+    "bkash": "bKash",
+    "nagad": "Nagad",
+    "number": "Account number",
+    "amount": "Amount",
+    "minAmount": "Minimum cashout is {amount}",
+    "button": "CASH OUT NOW",
+    "locked": "Cashout opens when your 7-day period ends: {date}",
+    "processing": "Processing...",
+    "success": "Cashout requested. Money will arrive shortly.",
+    "failed": "Cashout failed. Not saved — Retry.",
+    "history": "Cashout history",
+    "statusPending": "Pending",
+    "statusPaid": "Paid",
+    "statusFailed": "Failed"
+  },
+  "sos": {
+    "button": "SOS",
+    "title": "Send emergency alert?",
+    "message": "Your live location will be sent to dispatch right now.",
+    "confirm": "SEND ALERT",
+    "cancel": "Cancel",
+    "sending": "Sending your location...",
+    "sent": "Alert sent. Help is on the way. Stay safe.",
+    "failed": "Not sent — Retry"
+  },
+  "voice": {
+    "title": "Voice guidance",
+    "enable": "Voice guidance",
+    "handsFree": "Hands-free mode",
+    "handsFreeHint": "Say “confirm pickup” to confirm.",
+    "listening": "Listening...",
+    "notSupported": "Voice is not supported on this device.",
+    "micDenied": "Microphone permission is needed.",
+    "speakToPickup": "Go to {name} for pickup.",
+    "speakArrivedPickup": "You have arrived at the restaurant.",
+    "speakToCustomer": "Pickup confirmed. Go to the customer.",
+    "speakArrivedCustomer": "You have arrived at the customer's location.",
+    "speakDelivered": "Delivery completed. Well done.",
+    "commandConfirmPickup": "confirm pickup",
+    "commandConfirmDelivery": "confirm delivery",
+    "commandCall": "call customer",
+    "commandDirections": "open directions"
+  },
+  "rewards": {
+    "title": "Rewards",
+    "rank": "Your rank",
+    "rankBronze": "Bronze",
+    "rankSilver": "Silver",
+    "rankGold": "Gold",
+    "nextRank": "{count} more deliveries to reach {rank}",
+    "benefit": "Better rating, more orders",
+    "leaderboard": "Weekly leaderboard",
+    "position": "Rank #{position}",
+    "you": "You",
+    "prize": "Weekly prize",
+    "referral": "Refer a rider",
+    "referralHint": "Invite new riders. You earn a bonus when they complete their first delivery.",
+    "yourCode": "Your referral code",
+    "copy": "Copy code",
+    "copied": "Copied!",
+    "share": "Share",
+    "referred": "Riders referred",
+    "referralBonus": "Bonus per rider"
+  },
+  "profile": {
+    "title": "Profile",
+    "vehicle": "Vehicle",
+    "motorcycle": "Motorcycle",
+    "scooter": "Scooter",
+    "bicycle": "Bicycle",
+    "plate": "Plate number",
+    "payoutAccount": "Payout account",
+    "notLinked": "Not linked",
+    "language": "Language",
+    "logout": "Log out",
+    "support": "Support"
+  },
+  "support": {
+    "title": "Support",
+    "hotline": "Dispatch hotline",
+    "callHotline": "Call hotline",
+    "myTickets": "My tickets",
+    "newTicket": "New ticket",
+    "open": "Open",
+    "resolved": "Resolved",
+    "empty": "No tickets yet."
+  },
+  "notifications": {
+    "title": "Notifications",
+    "empty": "No notifications."
+  },
+  "errors": {
+    "generic": "Something went wrong. Please try again.",
+    "network": "No internet. Not saved — Retry.",
+    "notFoundTitle": "Page not found",
+    "notFoundHint": "This page does not exist.",
+    "goHome": "Go home",
+    "sessionExpired": "Session expired. Please log in again."
+  },
+  "offline": {
+    "banner": "You are offline. Actions will be sent when you are back online.",
+    "queued": "{count} action(s) waiting to sync",
+    "syncing": "Syncing...",
+    "synced": "All synced"
+  }
+}
