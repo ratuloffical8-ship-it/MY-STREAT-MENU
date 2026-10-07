@@ -8,20 +8,8 @@ import {
 } from "@/schemas/auth";
 import { api, ApiError } from "@/services/api";
 import { MOCK_LOGIN_OTP, MOCK_RIDER, MOCK_TOKEN, mockDelay } from "@/services/mock-data";
+import { parseResponse } from "@/services/parse";
 import type { AuthSession, RequestOtpPayload, VerifyOtpPayload } from "@/types/rider";
-
-interface ResponseSchema<T> {
-  safeParse(data: unknown): { success: true; data: T } | { success: false };
-}
-
-/** Checks the backend answer has the shape we expect. */
-function parseResponse<T>(schema: ResponseSchema<T>, data: unknown): T {
-  const result = schema.safeParse(data);
-  if (!result.success) {
-    throw new ApiError("Unexpected server response", 502, "server");
-  }
-  return result.data;
-}
 
 /** Step 1: ask the backend to send an OTP to the rider's phone. */
 export async function requestOtp(
