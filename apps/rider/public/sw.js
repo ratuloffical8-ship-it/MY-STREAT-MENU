@@ -1,21 +1,30 @@
 // apps/rider/public/sw.js
-/* MyStreetMenu Rider - Service Worker
+/* MyStreetMenu Rider - Service Worker (v2)
  * - Static assets: cache-first
- * - Page navigations: network-first, fall back to cached page when offline
+ * - Page navigations: network-first; if offline, show the last copy of THAT page
  * - API calls (/api/*) and non-GET requests are NEVER cached,
  *   so the rider never sees stale or fake delivery data.
+ * - Redirected responses (e.g. logged-out -> /login) are never cached, because
+ *   browsers refuse to show a redirected response from the cache.
  */
-const VERSION = "msm-rider-v1";
+const VERSION = "msm-rider-v2";
 const STATIC_CACHE = `${VERSION}-static`;
 const PAGE_CACHE = `${VERSION}-pages`;
 
 const PRECACHE_URLS = [
-  "/",
   "/manifest.json",
   "/icons/icon-192.png",
   "/icons/icon-512.png",
-  "/logo/logo.png",
+  "/logo/logo-480.webp",
 ];
+
+const OFFLINE_TEXT =
+  "অফলাইন। ইন্টারনেট সংযোগ দেখুন।\nOffline. Please check your internet connection.";
+
+/** Only plain, successful, same-origin responses are safe to store. */
+function isCacheable(response) {
+  return response.ok && !response.redirected && response.type === "basic";
+}
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
@@ -52,27 +61,26 @@ self.addEventListener("fetch", (event) => {
   // Never cache API calls
   if (url.pathname.startsWith("/api/")) return;
 
-  // Page navigations: network first, cached fallback
+  // Page navigations: network first, last copy of the same page when offline
   if (request.mode === "navigate") {
     event.respondWith(
       fetch(request)
         .then((response) => {
-          const copy = response.clone();
-          caches.open(PAGE_CACHE).then((cache) => cache.put(request, copy));
+          if (isCacheable(response)) {
+            const copy = response.clone();
+            caches.open(PAGE_CACHE).then((cache) => cache.put(request, copy));
+          }
           return response;
         })
         .catch(() =>
-          caches
-            .match(request)
-            .then((cached) => cached || caches.match("/"))
-            .then(
-              (fallback) =>
-                fallback ||
-                new Response("Offline. Please check your internet connection.", {
-                  status: 503,
-                  headers: { "Content-Type": "text/plain; charset=utf-8" },
-                })
-            )
+          caches.match(request).then(
+            (cached) =>
+              cached ||
+              new Response(OFFLINE_TEXT, {
+                status: 503,
+                headers: { "Content-Type": "text/plain; charset=utf-8" },
+              })
+          )
         )
     );
     return;
@@ -91,7 +99,7 @@ self.addEventListener("fetch", (event) => {
         (cached) =>
           cached ||
           fetch(request).then((response) => {
-            if (response.ok) {
+            if (isCacheable(response)) {
               const copy = response.clone();
               caches.open(STATIC_CACHE).then((cache) => cache.put(request, copy));
             }
