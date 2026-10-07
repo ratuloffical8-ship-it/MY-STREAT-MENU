@@ -50,7 +50,8 @@
     "forgotPassword": "পাসওয়ার্ড ভুলে গেছেন?",
     "logout": "লগ আউট",
     "invalidPhone": "সঠিক মোবাইল নম্বর দিন",
-    "invalidOtp": "OTP সঠিক নয়"
+    "invalidOtp": "OTP সঠিক নয়",
+    "demoHint": "ডেমো মোড: যেকোনো সঠিক মোবাইল নম্বর দিন। OTP হলো {otp}।"
   },
   "home": {
     "availability": "আপনার অবস্থা",
