@@ -50,7 +50,8 @@
     "forgotPassword": "Forgot password?",
     "logout": "Log out",
     "invalidPhone": "Enter a valid mobile number",
-    "invalidOtp": "The OTP is not correct"
+    "invalidOtp": "The OTP is not correct",
+    "demoHint": "Demo mode: use any valid mobile number. The OTP is {otp}."
   },
   "home": {
     "availability": "Your availability",
@@ -300,4 +301,4 @@
     "syncing": "Syncing...",
     "synced": "All synced"
   }
-}
+  }
