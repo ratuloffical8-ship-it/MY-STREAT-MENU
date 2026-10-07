@@ -1,0 +1,63 @@
+/* apps/rider/src/app/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light only: easiest to read in bright sunlight */
+    color-scheme: light;
+  }
+
+  html {
+    font-family: var(--font-hind), theme("fontFamily.sans");
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    overscroll-behavior-y: none;
+  }
+
+  /* Faster taps, no double-tap zoom delay on buttons and links */
+  a,
+  button,
+  [role="button"],
+  [role="switch"] {
+    touch-action: manipulation;
+  }
+
+  /* 16px stops iPhones from zooming into inputs */
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+
+  :focus-visible {
+    outline: 2px solid #14213d;
+    outline-offset: 2px;
+  }
+}
+
+@layer utilities {
+  /* Page content padding so the fixed bottom navigation never covers it */
+  .pb-nav-safe {
+    padding-bottom: calc(theme("spacing.nav") + env(safe-area-inset-bottom, 0px) + 1rem);
+  }
+
+  .pt-safe {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+      }
