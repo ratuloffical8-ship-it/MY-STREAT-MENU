@@ -3,13 +3,20 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getCurrentPoint } from "@/lib/location";
 import { queryKeys } from "@/lib/query-keys";
 import {
+  confirmDelivery,
   confirmPickup,
   getDelivery,
   markArrived,
   reportProblem,
   startDelivery,
 } from "@/services/delivery";
-import type { Delivery, ProblemReason, ProblemStage } from "@/types/delivery";
+import type {
+  Delivery,
+  GeoPoint,
+  ProblemReason,
+  ProblemStage,
+  VerificationMethod,
+} from "@/types/delivery";
 
 const DELIVERY_POLL_MS = 15_000;
 
@@ -86,4 +93,33 @@ export function useReportProblem() {
         reportedAt: new Date().toISOString(),
       }),
   });
-  }
+}
+
+/**
+ * "Confirm delivery". When it works, every screen that shows money or
+ * deliveries is refreshed (Home tally, earnings, history).
+ */
+export function useConfirmDelivery() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (variables: {
+      deliveryId: string;
+      /** Rider's position; the server checks it is near the customer. */
+      location: GeoPoint;
+      method: VerificationMethod;
+      otp?: string;
+      photoDataUrl?: string;
+    }) =>
+      confirmDelivery({
+        ...variables,
+        confirmedAt: new Date().toISOString(),
+      }),
+    onSuccess: (delivery) => {
+      queryClient.setQueryData(queryKeys.delivery(delivery.id), delivery);
+      queryClient.setQueryData(queryKeys.activeDelivery, null);
+      void queryClient.invalidateQueries({ queryKey: ["earnings"] });
+      void queryClient.invalidateQueries({ queryKey: ["deliveries", "history"] });
+    },
+  });
+}
