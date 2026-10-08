@@ -46,7 +46,7 @@ export default function OverviewPage() {
         <ActiveDeliveryCard delivery={activeDelivery.data} />
       ) : null}
 
-      {rider.isError ? (
+      {rider.isError && rider.data === undefined ? (
         <Card tone="danger" className="flex flex-col gap-3">
           <p role="alert" className="text-base font-semibold text-danger-700">
             {t("errors.generic")}
