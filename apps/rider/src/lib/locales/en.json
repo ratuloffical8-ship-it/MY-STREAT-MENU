@@ -113,7 +113,9 @@
     "confirm": "CONFIRM DELIVERY",
     "reportProblem": "Report a delivery problem",
     "enterOtp": "Ask the customer for the 4-digit code",
-    "photoRequired": "Take a doorstep photo (contactless delivery)"
+    "photoRequired": "Take a doorstep photo (contactless delivery)",
+    "takePhoto": "Take photo",
+    "retakePhoto": "Retake photo"
   },
   "completed": {
     "title": "Delivery completed",
@@ -122,7 +124,9 @@
     "status": "Status",
     "statusCompleted": "Completed",
     "backHome": "BACK TO HOME",
-    "viewSummary": "View delivery summary"
+    "viewSummary": "View delivery summary",
+    "pickedUp": "Picked up at",
+    "delivered": "Delivered at"
   },
   "problem": {
     "title": "Report a problem",
