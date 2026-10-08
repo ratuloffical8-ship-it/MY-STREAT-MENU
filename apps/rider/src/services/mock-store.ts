@@ -1,7 +1,7 @@
 // apps/rider/src/services/mock-store.ts
 import { APP_TIME_ZONE, maskPhone } from "@/lib/formatters";
 import { MOCK_RIDER } from "@/services/mock-data";
-import type { Delivery } from "@/types/delivery";
+import type { Delivery, VerificationMethod } from "@/types/delivery";
 import type { DaySummary } from "@/types/earnings";
 import type { Rider } from "@/types/rider";
 
@@ -14,9 +14,25 @@ import type { Rider } from "@/types/rider";
 export interface MockDb {
   rider: Rider;
   activeDelivery: Delivery | null;
+  /** Finished deliveries of this demo session, newest first. */
+  completed: Delivery[];
   today: DaySummary;
   /** Order number for the next demo delivery (MSM-1043, MSM-1044, ...). */
   nextOrderNumber: number;
+}
+
+/** The 4-digit code the demo customer "tells" the rider (OTP deliveries). */
+export const MOCK_DELIVERY_OTP = "1234";
+
+/**
+ * So every handoff method can be tried in the demo:
+ * MSM-1042 = simple tap, MSM-1043 = customer OTP, MSM-1044 = contactless photo, then repeat.
+ */
+const VERIFICATION_CYCLE: readonly VerificationMethod[] = ["tap", "otp", "photo"];
+
+function verificationFor(orderNumber: number): VerificationMethod {
+  const index = (((orderNumber - 1042) % 3) + 3) % 3;
+  return VERIFICATION_CYCLE[index];
 }
 
 function minutesFromNow(minutes: number): string {
@@ -30,6 +46,7 @@ function dhakaDate(date: Date = new Date()): string {
 
 /** A fresh demo delivery, like the one in the plan: Green Bowl -> Mirpur 11. */
 export function createMockDelivery(orderNumber: number): Delivery {
+  const verification = verificationFor(orderNumber);
   return {
     id: `d_${orderNumber}`,
     orderCode: `MSM-${orderNumber}`,
@@ -54,8 +71,8 @@ export function createMockDelivery(orderNumber: number): Delivery {
       // Demo only: not a real number
       callBridgeNumber: "+8800000000000",
     },
-    verification: "tap",
-    isContactless: false,
+    verification,
+    isContactless: verification === "photo",
     earning: 80,
     tip: 0,
     batch: null,
@@ -70,6 +87,7 @@ export function createMockDelivery(orderNumber: number): Delivery {
 export const mockDb: MockDb = {
   rider: { ...MOCK_RIDER },
   activeDelivery: createMockDelivery(1042),
+  completed: [],
   today: {
     date: dhakaDate(),
     deliveriesCompleted: 8,
@@ -87,4 +105,4 @@ export function assignNextMockDelivery(): Delivery {
   mockDb.nextOrderNumber += 1;
   mockDb.activeDelivery = delivery;
   return delivery;
-                                 }
+}
