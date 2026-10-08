@@ -25,8 +25,9 @@ export function getCurrentPoint(maxWaitMs = 4_000): Promise<GeoPoint | null> {
       resolve(point);
     };
 
-    // Also covers a permission prompt that nobody answers
-    const timer = setTimeout(() => finish(null), maxWaitMs + 4_000);
+    // Browsers do NOT start the GPS timeout while a permission prompt is open,
+    // so an unanswered prompt would wait forever. This stops that.
+    const timer = setTimeout(() => finish(null), maxWaitMs + 2_000);
 
     navigator.geolocation.getCurrentPosition(
       (position) => finish(toGeoPoint(position)),
@@ -38,4 +39,4 @@ export function getCurrentPoint(maxWaitMs = 4_000): Promise<GeoPoint | null> {
       }
     );
   });
-  }
+                     }
